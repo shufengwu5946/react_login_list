@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import Login from "./LogIn/index";
+import Dashboard from "./Dashboard/index";
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { login: false, userId: 0,userName:"" }
+    this.handleLoginChange = this.handleLoginChange.bind(this);
+  }
+
+  handleLoginChange(state){
+    this.setState(state);
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        {
+          this.state.login ? 
+          <Dashboard userId = {this.state.userId} userName = {this.state.userName} handleLoginChange = {this.handleLoginChange}/> : 
+          <Login handleLoginChange = {this.handleLoginChange}/>
+        }
       </div>
     );
   }
