@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import { LoginContext } from '../login-context';
 
 const styles = theme => ({
     root: {
@@ -21,20 +22,27 @@ const styles = theme => ({
 
 class TitleBar extends React.Component {
 
-    handleLoginChange(){
-        this.props.handleLoginChange({login:false});
-    }
+    // handleLoginChange(){
+    //     this.props.handleLoginChange({login:false});
+    // }
 
     render() {
         const { classes } = this.props;
         return (
             <AppBar position="static">
-                <Toolbar>
-                    <Typography variant="h6" color="inherit" className={classes.grow}>
-                        {`Hello ${this.props.userName}`}
-                        </Typography>
-                    <Button color="inherit" onClick = {()=>this.handleLoginChange()} disabled = {this.props.loading}>LogOut</Button>
-                </Toolbar>
+                <LoginContext.Consumer>
+                    {
+                        ({userName,handleLoginChange})=>(
+                            <Toolbar>
+                                <Typography variant="h6" color="inherit" className={classes.grow}>
+                                    {`Hello ${userName}`}
+                                    </Typography>
+                                <Button color="inherit" onClick = {handleLoginChange} disabled = {this.props.loading}>LogOut</Button>
+                            </Toolbar>
+                        )
+                    }
+                </LoginContext.Consumer>
+                
             </AppBar>
         )
     }

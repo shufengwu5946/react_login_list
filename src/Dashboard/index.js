@@ -22,7 +22,6 @@ class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = { data: "", loading: true }
-        this.handleLoginChange = this.handleLoginChange.bind(this);
     }
     componentDidMount() {
         getList(this.props.userId, (data) => {
@@ -32,10 +31,6 @@ class Dashboard extends React.Component {
             // alert("列表请求失败");
 
         });
-    }
-
-    handleLoginChange(state) {
-        this.props.handleLoginChange(state);
     }
 
     handleDelete(id) {
@@ -99,7 +94,7 @@ class Dashboard extends React.Component {
         return (
 
             <div className={classes.root}>
-                <TitleBar handleLoginChange={this.handleLoginChange} userName={this.props.userName} loading={this.state.loading} />
+                <TitleBar loading={this.state.loading} />
                 <Typography className={classes.title} variant="h4" gutterBottom>
                     Todo Form
                 </Typography>

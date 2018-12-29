@@ -9,22 +9,25 @@ import Button from "@material-ui/core/Button";
 import { fetchLogin } from "../utils";
 const styles = theme => ({
   root: {
-    
     position: "absolute",
     width: "100%",
     height: "100%",
     background: "white",
   },
   button: {
-    margin: theme.spacing.unit,
-    width: "100%"
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit,
+    width:"50%"
   },
   paper: {
     paddingTop:10,
     marginTop: "10%",
     width: 400,
     marginLeft: "auto",
-    marginRight: "auto"
+    marginRight: "auto",
+    display:"flex",
+    flexDirection: "column",
+    alignItems: "center"
   }
 });
 
@@ -52,7 +55,7 @@ class Login extends React.Component {
         
       },
       error => {
-        this.setState({ loading:false,error: "Uh oh,some error happened!" });
+        this.setState({ loading:false,error: (error.error?error.error:"Uh oh,some error happened!") });
       }
     );
   }

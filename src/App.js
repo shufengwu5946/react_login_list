@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 import Login from "./LogIn/index";
 import Dashboard from "./Dashboard/index";
+import {LoginContext} from './login-context';
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { login: false, userId: 0,userName:"" }
     this.handleLoginChange = this.handleLoginChange.bind(this);
+    this.state = { userName:"",handleLoginChange:this.handleLoginChange,login: false, userId: 0 }
   }
 
   handleLoginChange(state){
@@ -17,11 +18,14 @@ class App extends Component {
   render() {
     return (
       <div>
-        {
-          this.state.login ? 
-          <Dashboard userId = {this.state.userId} userName = {this.state.userName} handleLoginChange = {this.handleLoginChange}/> : 
-          <Login handleLoginChange = {this.handleLoginChange}/>
-        }
+        <LoginContext.Provider value = {this.state}>
+          {
+            this.state.login ? 
+            <Dashboard userId = {this.state.userId} /> : 
+            <Login handleLoginChange = {this.handleLoginChange}/>
+          }
+        </LoginContext.Provider>
+        
       </div>
     );
   }
