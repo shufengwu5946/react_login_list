@@ -37,7 +37,7 @@ class TitleBar extends React.Component {
                                 <Typography variant="h6" color="inherit" className={classes.grow}>
                                     {`Hello ${userName}`}
                                     </Typography>
-                                <Button color="inherit" onClick = {handleLoginChange} disabled = {this.props.loading}>LogOut</Button>
+                                <Button color="inherit" onClick = {()=>{handleLoginChange({login:false})}} disabled = {this.props.loading}>LogOut</Button>
                             </Toolbar>
                         )
                     }

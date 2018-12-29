@@ -82,8 +82,7 @@ class Login extends React.Component {
             color="primary"
             className={classes.button}
             onClick={e => this.handleClick(e)}
-            disabled = {this.state.loading}
-          >
+            disabled = {this.state.loading}>
             {this.state.loading?"Loggin in...":"Login"}
           </Button>
         </Paper>
