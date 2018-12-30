@@ -6,7 +6,9 @@ import TextField from "@material-ui/core/TextField";
 
 const styles = theme => ({
     root: {
-        flexGrow: 1,
+        display:"flex",
+        flexDirection:"row",
+        alignItems:"center"
     },
     todoText: {
         width: 300,
@@ -35,7 +37,7 @@ class AddInput extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <div>
+            <div className={classes.root}>
                 <TextField
                     id="standard-with-placeholder"
                     label="Add todo"
